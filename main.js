@@ -7,16 +7,18 @@ window.addEventListener("load", () => {
         }
     });
     console.log(prCont);
-    for(var i = 0; i < (prCont.length / 2 ) + 1; i++) {
-        let card = $("img", {src: prCont[i].src, classList: "card img", color: prCont[i].color});
-        card.addEventListener("click", (e) => {
-            console.log(e.target.color);
-            localStorage.setItem("priorityColor", e.target.color);
-            alert("We have remembered your preference in color");
-            
-        });
-        container.append(card);
-        content.splice(content.indexOf(prCont[i]), 1);
+    if(prCont != null) {
+        for(var i = 0; i < (prCont.length / 2 ) + 1; i++) {
+            let card = $("img", {src: prCont[i].src, classList: "card img", color: prCont[i].color});
+            card.addEventListener("click", (e) => {
+                console.log(e.target.color);
+                localStorage.setItem("priorityColor", e.target.color);
+                alert("We have remembered your preference in color");
+
+            });
+            container.append(card);
+            content.splice(content.indexOf(prCont[i]), 1);
+        }
     }
 
     for (var j = 0; j < content.length; j++) {
