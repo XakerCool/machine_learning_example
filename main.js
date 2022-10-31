@@ -7,7 +7,7 @@ window.addEventListener("load", () => {
         }
     });
     console.log(prCont);
-    if(prCont != null) {
+    if(prCont.length > 0) {
         for(var i = 0; i < (prCont.length / 2 ) + 1; i++) {
             let card = $("img", {src: prCont[i].src, classList: "card img", color: prCont[i].color});
             card.addEventListener("click", (e) => {
