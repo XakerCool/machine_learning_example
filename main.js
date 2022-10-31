@@ -14,7 +14,7 @@ window.addEventListener("load", () => {
                 console.log(e.target.color);
                 localStorage.setItem("priorityColor", e.target.color);
                 alert("We have remembered your preference in color");
-
+                
             });
             container.append(card);
             content.splice(content.indexOf(prCont[i]), 1);
