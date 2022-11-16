@@ -2,33 +2,44 @@ window.addEventListener("load", () => {
     let container = document.getElementById("container");
     let prCont = [];
     content.forEach((elem, index) => {
-        if(elem.color == localStorage?.getItem("priorityColor")) {
+        if(elem.color == localStorage?.getItem("priorityColor") && elem.category == localStorage?.getItem("priorityCategory")) {
             prCont.push(elem);
         }
     });
-    console.log(prCont);
     if(prCont.length > 0) {
-        for(var i = 0; i < (prCont.length / 2 ) + 1; i++) {
-            let card = $("img", {src: prCont[i].src, classList: "card img", color: prCont[i].color});
-            card.addEventListener("click", (e) => {
-                console.log(e.target.color);
-                localStorage.setItem("priorityColor", e.target.color);
-                alert("We have remembered your preference in color");
-                
-            });
+        for(var i = 0; i < prCont.length; i++) {
+            let card = $("div", {classList: "card", dataset: { color: prCont[i].color, category: prCont[i].category }, style: {
+                backgroundImage: "url(" + prCont[i].src + ")"
+            }}, 
+                $("i", { classList: "fa-solid fa-thumbs-up like_button" , onclick: (e) => {
+                    console.log(e.target.parentElement);
+                    localStorage.setItem("priorityColor", e.target.parentElement.dataset.color);
+                    localStorage.setItem("priorityCategory", e.target.parentElement.dataset.category);
+                }})
+            );
             container.append(card);
             content.splice(content.indexOf(prCont[i]), 1);
         }
     }
-
-    for (var j = 0; j < content.length; j++) {
-        let card = $("img", {src: content[j].src, classList: "card img", color: content[j].color});
-        card.addEventListener("click", (e) => {
-            localStorage.setItem("priorityColor", e.target.color);
-            alert("We have remembered your preference in color"); 
-        });
-        container.append(card);
-    }
+    let existedId = [];
+    let counter = 0;
+    do {
+        let cardNum = randomInt(0, content.length);
+        if (existedId.includes(cardNum) == false) {
+            existedId.push(cardNum);
+            let card = $("div", {classList: "card", dataset: { color: content[cardNum].color, category: content[cardNum].category }, style: {
+                backgroundImage: "url(" + content[cardNum].src + ")"
+            }},
+                $("i", { classList: "fa-solid fa-thumbs-up like_button" , onclick: (e) => {
+                    console.log(e.target.parentElement);
+                    localStorage.setItem("priorityColor", e.target.parentElement.dataset.color);
+                    localStorage.setItem("priorityCategory", e.target.parentElement.dataset.category);
+                }})
+            );
+            container.append(card);
+            counter++;
+        }
+    } while(counter != content.length);
 })
 
 var content = [

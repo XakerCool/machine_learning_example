@@ -2,6 +2,9 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+    background: rgb(2,0,36);
+    background: radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 50%, rgba(0,161,194,1) 100%);
 }
 .container {
     width: 100%;
@@ -12,21 +15,31 @@ body {
     flex-wrap: wrap;
 }
 .card {
+    background-color: #fff;
+    position: relative;
+    width: 300px;
+    height: 400px;
+    background-repeat: no-repeat;
+    background-size: 200px 200px;
+    background-position: center;
     border: 2px solid black;
     border-radius: 20px;
     padding: 10px;
     margin: 20px;
     transition: .2s;
 }
-.card:hover {
+.like_button {
+    font-size: 40px;
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    transition: .3s;
+}
+.like_button:hover {
     cursor: pointer;
+    opacity: .5;
 }
-.img {
-    width: 300px;
-    height: 300px;
-    transition: .2s;
-}
-.img:hover{
-    opacity: .8;
-    scale: 1.1;
+.header, .welcome_text{
+    font-family: 'Alumni Sans Pinstripe', sans-serif;
+    font-family: 'Sono', sans-serif; 
 }
